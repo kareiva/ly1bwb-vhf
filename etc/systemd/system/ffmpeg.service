@@ -1,0 +1,28 @@
+[Unit]
+Description=Audio stream service
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+Environment=ALSA_INPUT=hw:0,0
+ExecStart=/usr/bin/ffmpeg -ac 2 -f alsa -i ${ALSA_INPUT} \
+        -acodec libmp3lame \
+        -deadline realtime \
+        -tune zerolatency \
+        -preset ultrafast \
+        -ab 48k \
+        -ac 2 \
+        -ar 22050 \
+        -content_type audio/mpeg \
+        -f mp3 \
+        icecast://username:password@127.0.0.1:8000/ft847 \
+        -ice_name "LY1BWB VHF/UHF satellite tracker" \
+        -ice_description "Radio: Yaesu FT-847, 9600 data out (PKT port)" \
+        -ice_genre "Hamradio" \
+        -ice_url "http://www.rk.projektas.vu.lt"
+
+[Install]
+WantedBy=multi-user.target
