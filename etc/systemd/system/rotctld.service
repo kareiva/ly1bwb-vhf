@@ -1,0 +1,14 @@
+[Unit]
+Description=Rotator control service
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=ly1bwb
+Environment=ROT=/dev/serial/by-id/usb-Arduino_srl__www.arduino.org__Arduino_USB2Serial_75533353038351114142-if00
+ExecStart=/usr/bin/rotctld -m 603 -r ${ROT} -s 9600
+
+[Install]
+WantedBy=multi-user.target
