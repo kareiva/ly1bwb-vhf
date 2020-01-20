@@ -1,0 +1,14 @@
+<icecast>
+    <limits>
+        <clients>100</clients>
+        <sources>2</sources>
+        <threadpool>5</threadpool>
+        <queue-size>524288</queue-size>
+        <client-timeout>30</client-timeout>
+        <header-timeout>15</header-timeout>
+        <source-timeout>10</source-timeout>
+        <burst-on-connect>1</burst-on-connect>
+        <!-- truputi reikia, kitaip mpg123 trukcioja -->
+        <burst-size>8192</burst-size>
+    </limits>
+</icecast>
